@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cpx-blog
+  labels:
+    app: cpx-blog
+  namespace: kube-public
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: cpx-blog
+    spec:
+      terminationGracePeriodSeconds: 60
+      nodeSelector:
+        compute: "true"
+      containers:
+      - name: cpx-blog
+        # Any image is permissable as long as:
+        # 1. It serves a 404 page at /
+        # 2. It serves 200 on a /healthz endpoint
+        image: mayankt/cpx-blog
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 10m
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpx-blog
+  namespace: kube-public
+  labels:
+    app: cpx-blog
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: cpx-blog

@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: kube-public
+spec:
+  rules:
+  - host: example.home.lab
+    http:
+      paths:
+      - path: /blog
+        backend:
+          serviceName: cpx-blog
+          servicePort: 30000

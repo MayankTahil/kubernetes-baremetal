@@ -1,0 +1,23 @@
+$ttl 38400
+home.lab.	IN	SOA	dns. postmaster.home.lab. (
+			1508696912
+			10800
+			3600
+			604800
+			38400 )
+home.lab.	IN	NS	dns.
+ping.home.lab.	IN	A	192.168.10.1
+dns.home.lab.	IN	A	192.168.10.101
+infravm.home.lab.	IN	A	192.168.10.100
+mas.home.lab.	IN	A	192.168.10.5
+rancher.home.lab.	IN	A	192.168.10.100
+ns.home.lab.	IN	A	192.168.10.3
+edge-minion-1.home.lab.	IN	A	192.168.10.201
+edge-minion-2.home.lab.	IN	A	192.168.10.202
+edge-minion-3.home.lab.	IN	A	192.168.10.203
+compute-minion-1.home.lab.	IN	A	192.168.10.211
+compute-minion-2.home.lab.	IN	A	192.168.10.212
+compute-minion-3.home.lab.	IN	A	192.168.10.213
+drive.home.lab.	IN	A	192.168.10.104
+bpi.home.lab.	IN	A	192.168.10.97
+registry.home.lab.	IN	A	192.168.10.100

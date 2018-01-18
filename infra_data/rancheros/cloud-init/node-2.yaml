@@ -1,0 +1,42 @@
+#cloud-config
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDmj8vlWyw+AJ03hRRTOLHrDDCg9IM+e5uQFAefnEJeCezEQhTU33kSAyVnUHCJE9uvp5cdlW/IDfMlkSn3RH8Dhid6nZx6joWiS57QmDCmYinQDg/MJYesdkNt80zVFtny2AX6nfqP+5RInztdWWQZZyMt3KZI29Fm7h/48A5Vlw== rancher@cluster.local
+write_files:
+  - path: /mnt/rancher-os.yaml
+    permissions: "0755"
+    owner: root
+    content: |
+      #cloud-config
+      hostname: node-2
+      ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpmXcktJmAWu8R8eZqXEh4zjMyQAjAGIJ7y4OAPCGShpN7/rHHXugqzGwFZCUqvJH/e2WjAlx/QaqdvsNFRwIvX2yviQAtLHeX7DcjAlFqKJNTm+v3gcr7hT8Sr8f8UOiedH+aHPlua85BgIREgrGMje0pdhgc4WsH7MGbLhID1UDmPVgdNznwXsoErBa1bt3YKqsM0c65rzWR1dROhlIArtGqz0RxMyuwb+LJEMLbif2AgQzlcWe2SJnzHhodAD6SZwH2OnfYAiNTmVs+Nxz/hlqqWjrKzC63u/uSkdp5wHNDi3UQyh3Fq/kQ0/YXmBw5uo0dk1lK0nuyOh6JE9Wn admin@home.lab
+      rancher:
+        console: ubuntu
+        docker:
+          engine: docker-1.12.6
+        services:
+          nfs:
+            image: itsthenetwork/nfs-server-alpine:latest
+            environment: 
+              - SHARED_DIRECTORY=/data
+            ports:
+              - 2049:2049
+            volumes:
+              - /data:/data:rw
+            privileged: true
+        network:
+          interfaces:
+            eth0:
+              dhcp: true
+            eth1:
+              address: 10.0.10.102/24
+              mtu: 1500
+              dhcp: false
+          dns:
+            nameservers:
+              - 192.168.10.101
+      runcmd:
+      - [ mkdir, /data ]
+runcmd:
+- sudo ros install -f -c /mnt/rancher-os.yaml -d /dev/sda
+

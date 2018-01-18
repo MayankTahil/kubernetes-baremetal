@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: node-1
+spec:
+  capacity:
+    storage: 115Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: node-1.home.lab
+    path: "/nfsshare"

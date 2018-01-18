@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-configuration
+  namespace: kube-public
+  labels:
+    app: ingress-nginx
+data:
+  map-hash-bucket-size: "128"
+  ssl-protocols: SSLv2

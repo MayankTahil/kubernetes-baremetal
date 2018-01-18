@@ -1,0 +1,20 @@
+$ttl 38400
+10.168.192.in-addr.arpa.	IN	SOA	dns. postmaster.home.lab. (
+			1508697022
+			10800
+			3600
+			604800
+			38400 )
+10.168.192.in-addr.arpa.	IN	NS	dns.
+101.10.168.192.in-addr.arpa.	IN	PTR	dns.home.lab.
+100.10.168.192.in-addr.arpa.	IN	PTR	infravm.home.lab.
+5.10.168.192.in-addr.arpa.	IN	PTR	mas.home.lab.
+3.10.168.192.in-addr.arpa.	IN	PTR	ns.home.lab.
+211.10.168.192.in-addr.arpa.	IN	PTR	compute-minion-1.home.lab.
+212.10.168.192.in-addr.arpa.	IN	PTR	compute-minion-2.home.lab.
+213.10.168.192.in-addr.arpa.	IN	PTR	compute-minion-3.home.lab.
+201.10.168.192.in-addr.arpa.	IN	PTR	edge-minion-1.home.lab.
+202.10.168.192.in-addr.arpa.	IN	PTR	edge-minion-2.home.lab.
+203.10.168.192.in-addr.arpa.	IN	PTR	edge-minion-3.home.lab.
+104.10.168.192.in-addr.arpa.	IN	PTR	drive.home.lab.
+97.10.168.192.in-addr.arpa.	IN	PTR	bpi.home.lab.
