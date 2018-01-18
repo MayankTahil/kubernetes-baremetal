@@ -1,0 +1,5 @@
+./infra_data/rancher-*
+./rke/*.key
+./rke/rke
+./rke/.kube_config_cluster.yaml
+./rke/config
